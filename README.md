@@ -10,3 +10,9 @@ Boilerplate for SSAD Assignment 2
 ```bash
               export GOBIN=$GOPATH/bin
 ```
+- Packages used in this tutorial -
+```bash
+              go get -u -v github.com/gin-gonic/gin
+              go get -u -v github.com/jinzhu/gorm
+              go get -u -v github.com/jinzhu/gorm/dialects/sqlite
+```
