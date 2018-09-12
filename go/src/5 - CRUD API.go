@@ -4,10 +4,10 @@ import (
    "fmt"
    "github.com/gin-gonic/gin"
    "github.com/jinzhu/gorm"
-   _ "github.com/jinzhu/gorm/dialects/sqlite"
+   _ "github.com/jinzhu/gorm/dialects/sqlite"           // If you want to use mysql or any other db, replace this line
 )
 
-var db *gorm.DB
+var db *gorm.DB                                         // declaring the db globally
 var err error
 
 type Person struct {
@@ -18,9 +18,8 @@ type Person struct {
 }
 
 func main() {
-   // NOTE: See we’re using = to assign the global var
-   // instead of := which would assign it only in this function
    db, err = gorm.Open("sqlite3", "./gorm.db")
+   // If you want to use MySQL, use the following line
    // db, _ = gorm.Open("mysql", "user:pass@tcp(127.0.0.1:3306)/database?charset=utf8&parseTime=True&loc=Local")
    if err != nil {
       fmt.Println(err)
@@ -29,12 +28,12 @@ func main() {
 
    db.AutoMigrate(&Person{})
    r := gin.Default()
-   r.GET("/people/", GetPeople)
+   r.GET("/people/", GetPeople)                             // Creating routes for each functionality
    r.GET("/people/:id", GetPerson)
    r.POST("/people", CreatePerson)
    r.PUT("/people/:id", UpdatePerson)
    r.DELETE("/people/:id", DeletePerson)
-   r.Run(":8080")
+   r.Run(":8080")                                           // Run on port 8080
 }
 
 func DeletePerson(c *gin.Context) {
