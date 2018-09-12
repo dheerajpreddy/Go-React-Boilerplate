@@ -1,27 +1,27 @@
 package main
 
 import (
-   “fmt”
-   “github.com/gin-gonic/gin”
-   “github.com/jinzhu/gorm”
-   _ “github.com/jinzhu/gorm/dialects/sqlite”
+   "fmt"
+   "github.com/gin-gonic/gin"
+   "github.com/jinzhu/gorm"
+   _ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 var db *gorm.DB
 var err error
 
 type Person struct {
-   ID uint `json:”id”`
-   FirstName string `json:”firstname”`
-   LastName string `json:”lastname”`
-   City string `json:”city”`
+   ID uint `json:"id"`
+   FirstName string `json:"firstname"`
+   LastName string `json:"lastname"`
+   City string `json:"city"`
 }
 
 func main() {
    // NOTE: See we’re using = to assign the global var
    // instead of := which would assign it only in this function
-   db, err = gorm.Open(“sqlite3”, “./gorm.db”)
-   // db, _ = gorm.Open(“mysql”, “user:pass@tcp(127.0.0.1:3306)/database?charset=utf8&parseTime=True&loc=Local”)
+   db, err = gorm.Open("sqlite3", "./gorm.db")
+   // db, _ = gorm.Open("mysql", "user:pass@tcp(127.0.0.1:3306)/database?charset=utf8&parseTime=True&loc=Local")
    if err != nil {
       fmt.Println(err)
    }
@@ -29,26 +29,26 @@ func main() {
 
    db.AutoMigrate(&Person{})
    r := gin.Default()
-   r.GET(“/people/”, GetPeople)
-   r.GET(“/people/:id”, GetPerson)
-   r.POST(“/people”, CreatePerson)
-   r.PUT(“/people/:id”, UpdatePerson)
-   r.DELETE(“/people/:id”, DeletePerson)
-   r.Run(“:8080”)
+   r.GET("/people/", GetPeople)
+   r.GET("/people/:id", GetPerson)
+   r.POST("/people", CreatePerson)
+   r.PUT("/people/:id", UpdatePerson)
+   r.DELETE("/people/:id", DeletePerson)
+   r.Run(":8080")
 }
 
 func DeletePerson(c *gin.Context) {
-   id := c.Params.ByName(“id”)
+   id := c.Params.ByName("id")
    var person Person
-   d := db.Where(“id = ?”, id).Delete(&person)
+   d := db.Where("id = ?", id).Delete(&person)
    fmt.Println(d)
-   c.JSON(200, gin.H{“id #” + id: “deleted”})
+   c.JSON(200, gin.H{"id #" + id: "deleted"})
 }
 
 func UpdatePerson(c *gin.Context) {
    var person Person
-   id := c.Params.ByName(“id”)
-   if err := db.Where(“id = ?”, id).First(&person).Error; err != nil {
+   id := c.Params.ByName("id")
+   if err := db.Where("id = ?", id).First(&person).Error; err != nil {
       c.AbortWithStatus(404)
       fmt.Println(err)
    }
@@ -65,9 +65,9 @@ func CreatePerson(c *gin.Context) {
 }
 
 func GetPerson(c *gin.Context) {
-   id := c.Params.ByName(“id”)
+   id := c.Params.ByName("id")
    var person Person
-   if err := db.Where(“id = ?”, id).First(&person).Error; err != nil {
+   if err := db.Where("id = ?", id).First(&person).Error; err != nil {
       c.AbortWithStatus(404)
       fmt.Println(err)
    } else {
