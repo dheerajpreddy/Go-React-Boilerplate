@@ -2,6 +2,7 @@ package main
 
 import (
    "fmt"
+   "github.com/gin-contrib/cors"
    "github.com/gin-gonic/gin"
    "github.com/jinzhu/gorm"
    _ "github.com/jinzhu/gorm/dialects/sqlite"           // If you want to use mysql or any other db, replace this line
@@ -31,7 +32,7 @@ func main() {
    r.POST("/people", CreatePerson)
    r.PUT("/people/:id", UpdatePerson)
    r.DELETE("/people/:id", DeletePerson)
-
+   r.Use((cors.Default()))
    r.Run(":8080")                                           // Run on port 8080
 }
 
@@ -41,6 +42,7 @@ func DeletePerson(c *gin.Context) {
    var person Person
    d := db.Where("id = ?", id).Delete(&person)
    fmt.Println(d)
+   c.Header("access-control-allow-origin", "*")
    c.JSON(200, gin.H{"id #" + id: "deleted"})
 }
 
