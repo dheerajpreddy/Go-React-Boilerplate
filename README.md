@@ -1,6 +1,8 @@
 # Go-React-Boilerplate
 Boilerplate for SSAD Assignment 2
 
+If you're using this repo as reference, star it.
+
 # Go
 
 ## Setting up
