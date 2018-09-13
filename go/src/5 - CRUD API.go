@@ -2,7 +2,6 @@ package main
 
 import (
    "fmt"
-   "github.com/gin-contrib/cors"
    "github.com/gin-gonic/gin"
    "github.com/jinzhu/gorm"
    _ "github.com/jinzhu/gorm/dialects/sqlite"           // If you want to use mysql or any other db, replace this line
@@ -20,8 +19,6 @@ type Person struct {
 
 func main() {
    db, err = gorm.Open("sqlite3", "./gorm.db")
-   // If you want to use MySQL, use the following line
-   // db, _ = gorm.Open("mysql", "user:pass@tcp(127.0.0.1:3306)/database?charset=utf8&parseTime=True&loc=Local")
    if err != nil {
       fmt.Println(err)
    }
@@ -34,7 +31,7 @@ func main() {
    r.POST("/people", CreatePerson)
    r.PUT("/people/:id", UpdatePerson)
    r.DELETE("/people/:id", DeletePerson)
-   r.Use(cors.Default())
+
    r.Run(":8080")                                           // Run on port 8080
 }
 
@@ -56,6 +53,7 @@ func UpdatePerson(c *gin.Context) {
    }
    c.BindJSON(&person)
    db.Save(&person)
+   c.Header("access-control-allow-origin", "*") // Why am I doing this? Find out. Try running with this line commented
    c.JSON(200, person)
 }
 
@@ -63,6 +61,7 @@ func CreatePerson(c *gin.Context) {
    var person Person
    c.BindJSON(&person)
    db.Create(&person)
+   c.Header("access-control-allow-origin", "*") // Why am I doing this? Find out. Try running with this line commented
    c.JSON(200, person)
 }
 
@@ -73,6 +72,7 @@ func GetPerson(c *gin.Context) {
       c.AbortWithStatus(404)
       fmt.Println(err)
    } else {
+      c.Header("access-control-allow-origin", "*") // Why am I doing this? Find out. Try running with this line commented
       c.JSON(200, person)
    }
 }
@@ -83,6 +83,7 @@ func GetPeople(c *gin.Context) {
       c.AbortWithStatus(404)
       fmt.Println(err)
    } else {
+      c.Header("access-control-allow-origin", "*") // Why am I doing this? Find out. Try running with this line commented
       c.JSON(200, people)
    }
 }
