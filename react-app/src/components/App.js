@@ -13,17 +13,17 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <nav class="navbar navbar-default">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="#">React App</a>
+            <nav className="navbar navbar-default">
+              <div className="container-fluid">
+                <div className="navbar-header">
+                  <Link className="navbar-brand" to={'/'}>React App</Link>
                 </div>
-                <ul class="nav navbar-nav">
+                <ul className="nav navbar-nav">
                   <li><Link to={'/'}>Home</Link></li>
                   <li><Link to={'/NewPerson'}>Create Person</Link></li>
                   <li><Link to={'/EditPerson'}>Edit Person</Link></li>
                   <li><Link to={'/DeletePerson'}>Delete Person</Link></li>
-                  <li><Link to={'/ViewPeople'}>View all People</Link></li>
+                  <li><Link to={'/ViewPeople'}>View People</Link></li>
                 </ul>
               </div>
             </nav>
