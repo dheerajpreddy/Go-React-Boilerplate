@@ -9,7 +9,7 @@ class Home extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <NewComponent/>
+        <NewComponent text={"This text comes from another component called newComponent.js"}/>
       </div>
     );
   }

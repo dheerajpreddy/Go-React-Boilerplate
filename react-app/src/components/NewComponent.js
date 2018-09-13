@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class NewComponent extends Component {
   render() {
     return (
-        <h2> This text comes from another component called newComponent.js </h2>
+        <h2> {this.props.text} </h2>
     );
   }
 }
