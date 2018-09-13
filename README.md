@@ -10,9 +10,42 @@ Boilerplate for SSAD Assignment 2
 ```bash
               export GOBIN=$GOPATH/bin
 ```
+- Installing third party packages; use `go get`. An example:-
+```bash
+        go get -u -v gopkg.in/mgo.v2
+```
 - Packages used in this tutorial -
 ```bash
               go get -u -v github.com/gin-gonic/gin
               go get -u -v github.com/jinzhu/gorm
               go get -u -v github.com/jinzhu/gorm/dialects/sqlite
+              go get -u -v github.com/gin-contrib/cors
 ```
+- To run a program:-
+```bash
+              go run file.go
+```
+
+
+# React
+
+## Setting up
+- First, install node. Then install yarn (because npm is not very nice)
+- Ubuntu:
+```bash
+              curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+              npm install -g yarn
+              yarn global add create-react-app
+```
+- MacOS:
+```bash
+              brew install node
+              npm install -g yarn
+              yarn global add create-react-app
+```
+- Then, create a new React application by running the following:
+```bash
+              create-react-app name_of_app
+```
+- You can run the app by running `yarn start`
