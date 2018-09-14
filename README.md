@@ -50,5 +50,5 @@ If you're using this repo as reference, star it.
 ```bash
               create-react-app name_of_app
 ```
-- In the app I've made, make sure you run ```bash npm install``` or just ```bash yarn``` inside the `react-app` folder. This command automatically looks at the `package.json` file and installs the required packages into the `node_modules` folder.
+- In the app I've made, make sure you run `npm install` or just `yarn` inside the `react-app` folder. This command automatically looks at the `package.json` file and installs the required packages into the `node_modules` folder.
 - You can run the app by running `yarn start`
