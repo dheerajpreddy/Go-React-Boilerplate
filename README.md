@@ -16,7 +16,7 @@ If you're using this repo as reference, star it.
 ```bash
         go get -u -v gopkg.in/mgo.v2
 ```
-- Packages used in this tutorial -
+- You'll have to install the packages before you run the code, since my OS may be different from yours. Packages used in this tutorial -
 ```bash
               go get -u -v github.com/gin-gonic/gin
               go get -u -v github.com/jinzhu/gorm
@@ -50,4 +50,5 @@ If you're using this repo as reference, star it.
 ```bash
               create-react-app name_of_app
 ```
+- In the app I've made, make sure you run ```bash npm install``` or just ```bash yarn``` inside the `react-app` folder. This command automatically looks at the `package.json` file and installs the required packages into the `node_modules` folder.
 - You can run the app by running `yarn start`
