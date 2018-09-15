@@ -18,7 +18,7 @@ func main() {
    defer db.Close()                                       // defer basically tells it to execute at the end of the main function's scope
    db.AutoMigrate(&Person{})                              // Creates database based on the Person structure as schema
    p1 := Person{FirstName: "John", LastName: "Doe"}
-   p2 := Person{FirstName: "Jane", LastName: "Smith"}     // Example Person objects being created
+   // p2 := Person{FirstName: "Jane", LastName: "Smith"}     // Example Person objects being created
    db.Create(&p1)                                         // Creates an entry in the db with the object p1
    var p3 Person                                          // identify a Person type for us to store the results in
    db.First(&p3)                                          // Find the first record in the Database and store it in p3
